@@ -20,14 +20,20 @@ export const Categories = () => {
 		setProductCategories(productCategoriesResponseData);
 	};
 
-	const handleCategoriesMouseEnter = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+	const handleCategoriesMouseEnter = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
+		if (index == 0 || index == 1) {
+			return;
+		}
 		if (!e.currentTarget.previousElementSibling) return;
 		if (!e.currentTarget.nextElementSibling) return;
 		e.currentTarget.previousElementSibling.classList.replace("bg-white", "bg-black");
 		e.currentTarget.nextElementSibling.classList.replace("bg-white", "bg-black");
 	};
 
-	const handleCategoriesMouseLeave = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+	const handleCategoriesMouseLeave = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
+		if (index == 0 || index == 1) {
+			return;
+		}
 		if (!e.currentTarget.previousElementSibling) return;
 		if (!e.currentTarget.nextElementSibling) return;
 		e.currentTarget.previousElementSibling.classList.replace("bg-black", "bg-white");
@@ -47,8 +53,8 @@ export const Categories = () => {
 						<div key={index} className="flex">
 							<div className={`bg-white w-[1px] h-full`}></div>
 							<button
-								onMouseEnter={(e) => handleCategoriesMouseEnter(e)}
-								onMouseLeave={(e) => handleCategoriesMouseLeave(e)}
+								onMouseEnter={(e) => handleCategoriesMouseEnter(e, index)}
+								onMouseLeave={(e) => handleCategoriesMouseLeave(e, index)}
 							>
 								<Link to={"/"} className="mx-[20px] text-[13px] hover:underline hover:text-blue-700">
 									{data.name}
