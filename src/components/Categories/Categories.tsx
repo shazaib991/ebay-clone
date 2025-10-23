@@ -1,8 +1,9 @@
 import axios from "axios";
-import {useEffect} from "react";
+import {useCallback, useEffect} from "react";
 import {Link} from "react-router";
 import {CategoriesPopOver} from "../PopOvers/CategoriesPopOver";
-import {changeProductCategories} from "../states/States1";
+import {changeProductCategories} from "../states/States1.ts";
+import {changeCategoryMouseOver} from "../states/States1.ts";
 import {useDispatch, useSelector} from "react-redux";
 
 export const Categories = () => {
@@ -14,14 +15,17 @@ export const Categories = () => {
 		states: {
 			value: {
 				productCategories: Category[];
+				categoryMouseOver: boolean;
+				categoryPopOverInside: boolean;
 			};
 		};
 	}
 
 	const dispatch = useDispatch();
 	const productCategories = useSelector((state: RootState) => state.states.value.productCategories);
+	const categoryPopOverInside = useSelector((state: RootState) => state.states.value.categoryPopOverInside);
 
-	const getProductCategories = async () => {
+	const getProductCategories = useCallback(async () => {
 		const productCategoriesResponse = await axios("https://api.escuelajs.co/api/v1/categories");
 		const productCategoriesResponseData = productCategoriesResponse.data.slice(0, 6);
 
@@ -29,14 +33,17 @@ export const Categories = () => {
 		productCategoriesResponseData.unshift({id: 1, name: "eBay Live"}, {id: 2, name: "Saved"});
 
 		dispatch(changeProductCategories(productCategoriesResponseData));
-	};
+	}, [dispatch]);
 
 	const handleCategoriesMouseEnter = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
 		if (index == 0 || index == 1) {
 			return;
 		}
+
 		if (!e.currentTarget.previousElementSibling) return;
 		if (!e.currentTarget.nextElementSibling) return;
+
+		dispatch(changeCategoryMouseOver(true));
 		e.currentTarget.previousElementSibling.classList.replace("bg-white", "bg-black");
 		e.currentTarget.nextElementSibling.classList.replace("bg-white", "bg-black");
 	};
@@ -45,8 +52,11 @@ export const Categories = () => {
 		if (index == 0 || index == 1) {
 			return;
 		}
+
 		if (!e.currentTarget.previousElementSibling) return;
 		if (!e.currentTarget.nextElementSibling) return;
+
+		dispatch(changeCategoryMouseOver(false));
 		e.currentTarget.previousElementSibling.classList.replace("bg-black", "bg-white");
 		e.currentTarget.nextElementSibling.classList.replace("bg-black", "bg-white");
 	};
@@ -66,6 +76,7 @@ export const Categories = () => {
 							<button
 								onMouseEnter={(e) => handleCategoriesMouseEnter(e, index)}
 								onMouseLeave={(e) => handleCategoriesMouseLeave(e, index)}
+								className="pb-[5px]"
 							>
 								<Link to={"/"} className="mx-[20px] text-[13px] hover:underline hover:text-blue-700">
 									{data.name}
