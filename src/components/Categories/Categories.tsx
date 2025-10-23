@@ -1,14 +1,25 @@
 import axios from "axios";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {Link} from "react-router";
 import {CategoriesPopOver} from "../PopOvers/CategoriesPopOver";
+import {changeProductCategories} from "../states/States1";
+import {useDispatch, useSelector} from "react-redux";
 
 export const Categories = () => {
 	interface Category {
 		name: string;
 	}
 
-	const [productCategories, setProductCategories] = useState<Category[]>([]);
+	interface RootState {
+		states: {
+			value: {
+				productCategories: Category[];
+			};
+		};
+	}
+
+	const dispatch = useDispatch();
+	const productCategories = useSelector((state: RootState) => state.states.value.productCategories);
 
 	const getProductCategories = async () => {
 		const productCategoriesResponse = await axios("https://api.escuelajs.co/api/v1/categories");
@@ -17,7 +28,7 @@ export const Categories = () => {
 		productCategoriesResponseData.push({id: 51, name: "Deals"}, {id: 52, name: "Sell"});
 		productCategoriesResponseData.unshift({id: 1, name: "eBay Live"}, {id: 2, name: "Saved"});
 
-		setProductCategories(productCategoriesResponseData);
+		dispatch(changeProductCategories(productCategoriesResponseData));
 	};
 
 	const handleCategoriesMouseEnter = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
@@ -42,13 +53,13 @@ export const Categories = () => {
 
 	useEffect(() => {
 		getProductCategories();
-	}, []);
+	}, [getProductCategories]);
 
 	return (
 		<div>
 			<hr className="mt-[20px]" />
 			<div className="w-full flex justify-center font-[arimo] mt-[5px] relative">
-				{productCategories.map((data, index) => {
+				{productCategories.map((data: Category, index: number) => {
 					return (
 						<div key={index} className="flex">
 							<div className={`bg-white w-[1px] h-full`}></div>
