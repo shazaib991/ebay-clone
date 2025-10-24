@@ -78,7 +78,7 @@ export const Categories = () => {
 	return (
 		<div>
 			<hr className="mt-[20px]" />
-			<div className="w-full flex justify-center font-[arimo] mt-[5px] relative">
+			<div className="w-full flex justify-center font-[arimo] mt-[5px] relative font-medium">
 				{productCategories.map((data: Category, index: number) => {
 					return (
 						<div key={index} className="flex">
