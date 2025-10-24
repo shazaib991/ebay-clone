@@ -2,7 +2,7 @@ import axios from "axios";
 import {useCallback, useEffect} from "react";
 import {Link} from "react-router";
 import {CategoriesPopOver} from "../PopOvers/CategoriesPopOver";
-import {changeProductCategories} from "../states/States1.ts";
+import {changeCategoryNextHtmlElement, changeCategoryPreviousHtmlElement, changeProductCategories} from "../states/States1.ts";
 import {changeCategoryMouseOver} from "../states/States1.ts";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -17,13 +17,13 @@ export const Categories = () => {
 				productCategories: Category[];
 				categoryMouseOver: boolean;
 				categoryPopOverInside: boolean;
+				categoryPreviousHtmlElement: object;
 			};
 		};
 	}
 
 	const dispatch = useDispatch();
 	const productCategories = useSelector((state: RootState) => state.states.value.productCategories);
-	const categoryPopOverInside = useSelector((state: RootState) => state.states.value.categoryPopOverInside);
 
 	const getProductCategories = useCallback(async () => {
 		const productCategoriesResponse = await axios("https://api.escuelajs.co/api/v1/categories");
@@ -44,8 +44,12 @@ export const Categories = () => {
 		if (!e.currentTarget.nextElementSibling) return;
 
 		dispatch(changeCategoryMouseOver(true));
+
 		e.currentTarget.previousElementSibling.classList.replace("bg-white", "bg-black");
 		e.currentTarget.nextElementSibling.classList.replace("bg-white", "bg-black");
+
+		dispatch(changeCategoryPreviousHtmlElement(e.currentTarget.previousElementSibling));
+		dispatch(changeCategoryNextHtmlElement(e.currentTarget.nextElementSibling));
 	};
 
 	const handleCategoriesMouseLeave = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {

@@ -3,13 +3,15 @@ import {createSlice} from "@reduxjs/toolkit";
 interface States {
 	productCategories: Array<string>;
 	categoryMouseOver: boolean;
-	categoryPopOverInside: boolean,
+	categoryPreviousHtmlElement: React.HTMLElementType
+	categoryNextHtmlElement: React.HTMLElementType
 }
 
 const initialState = {
 	productCategories: [],
 	categoryMouseOver: false,
-	categoryPopOverInside: false,
+	categoryPreviousHtmlElement: Object(),
+	categoryNextHtmlElement: Object()
 } as States;
 
 export const States1Slice = createSlice({
@@ -22,12 +24,15 @@ export const States1Slice = createSlice({
 		changeCategoryMouseOver: (state, action) => {
 			state.value.categoryMouseOver = action.payload;
 		},
-		changeCategoryPopOverInside: (state, action) => {
-			state.value.categoryPopOverInside = action.payload;
+		changeCategoryPreviousHtmlElement: (state, action) => {
+			state.value.categoryPreviousHtmlElement = action.payload;
+		},
+		changeCategoryNextHtmlElement: (state, action) => {
+			state.value.categoryNextHtmlElement = action.payload;
 		},
 	},
 });
 
-export const {changeProductCategories, changeCategoryMouseOver, changeCategoryPopOverInside} = States1Slice.actions;
+export const {changeProductCategories, changeCategoryMouseOver, changeCategoryPreviousHtmlElement, changeCategoryNextHtmlElement} = States1Slice.actions;
 
 export default States1Slice.reducer;
