@@ -1,5 +1,8 @@
 import {useDispatch, useSelector} from "react-redux";
 import {changeCategoryMouseOver} from "../states/States1";
+import {CategoryPopover1} from "./CategoryPopover1";
+import {CategoryPopover2} from "./CategoryPopover2";
+import {CategoryPopover3} from "./CategoryPopover3";
 
 export const CategoriesPopOver = () => {
 	interface RootState {
@@ -11,6 +14,7 @@ export const CategoriesPopOver = () => {
 			};
 		};
 	}
+
 	const dispatch = useDispatch();
 	const categoryMouseOver = useSelector((state: RootState) => state.states.value.categoryMouseOver);
 	const categoryPreviousHtmlElement = useSelector((state: RootState) => state.states.value.categoryPreviousHtmlElement);
@@ -31,10 +35,14 @@ export const CategoriesPopOver = () => {
 	return (
 		<div
 			className={`${
-				categoryMouseOver ? "block" : "hidden"
+				categoryMouseOver ? "flex" : "hidden"
 			} absolute top-[27px] h-[300px] rounded-[20px] w-[98%] bg-blue-300`}
 			onMouseLeave={() => handleMouseLeave()}
 			onMouseEnter={() => handleMouseEnter()}
-		></div>
+		>
+			<CategoryPopover1></CategoryPopover1>
+			<CategoryPopover2></CategoryPopover2>
+			<CategoryPopover3></CategoryPopover3>
+		</div>
 	);
 };

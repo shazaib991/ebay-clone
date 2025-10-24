@@ -2,7 +2,12 @@ import axios from "axios";
 import {useCallback, useEffect} from "react";
 import {Link} from "react-router";
 import {CategoriesPopOver} from "../PopOvers/CategoriesPopOver";
-import {changeCategoryNextHtmlElement, changeCategoryPreviousHtmlElement, changeProductCategories} from "../states/States1.ts";
+import {
+	changeCategoryName,
+	changeCategoryNextHtmlElement,
+	changeCategoryPreviousHtmlElement,
+	changeProductCategories,
+} from "../states/States1.ts";
 import {changeCategoryMouseOver} from "../states/States1.ts";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -36,7 +41,7 @@ export const Categories = () => {
 	}, [dispatch]);
 
 	const handleCategoriesMouseEnter = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
-		if (index == 0 || index == 1) {
+		if (index == 0 || index == 1 || index == 8) {
 			return;
 		}
 
@@ -44,6 +49,7 @@ export const Categories = () => {
 		if (!e.currentTarget.nextElementSibling) return;
 
 		dispatch(changeCategoryMouseOver(true));
+		dispatch(changeCategoryName(e.currentTarget));
 
 		e.currentTarget.previousElementSibling.classList.replace("bg-white", "bg-black");
 		e.currentTarget.nextElementSibling.classList.replace("bg-white", "bg-black");
@@ -53,7 +59,7 @@ export const Categories = () => {
 	};
 
 	const handleCategoriesMouseLeave = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
-		if (index == 0 || index == 1) {
+		if (index == 0 || index == 1 || index == 8) {
 			return;
 		}
 
