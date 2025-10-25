@@ -14,6 +14,7 @@ import {useDispatch, useSelector} from "react-redux";
 export const Categories = () => {
 	interface Category {
 		name: string;
+		image: string;
 	}
 
 	interface RootState {
@@ -34,10 +35,33 @@ export const Categories = () => {
 		const productCategoriesResponse = await axios("https://api.escuelajs.co/api/v1/categories");
 		const productCategoriesResponseData = productCategoriesResponse.data.slice(0, 6);
 
-		productCategoriesResponseData.push({id: 51, name: "Deals"}, {id: 52, name: "Sell"});
-		productCategoriesResponseData.unshift({id: 1, name: "eBay Live"}, {id: 2, name: "Saved"});
+		productCategoriesResponseData.push(
+			{id: 51, name: "Deals", image: "http://placeimg.com/640/480/abstract"},
+			{
+				id: 52,
+				name: "Sell",
+				image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqnX0WPkekrKyTPe1oMqPu0MzbpM8MBcXPng&s",
+			}
+		);
+		productCategoriesResponseData.unshift(
+			{id: 1, name: "eBay Live", image: "http://placeimg.com/640/480/abstract"},
+			{id: 2, name: "Saved", image: "http://placeimg.com/640/480/abstract"}
+		);
 
-		dispatch(changeProductCategories(productCategoriesResponseData));
+		const updatedCategories = productCategoriesResponseData.map((item: Category & {id: number}) => ({
+			...item,
+			name: item.name?.toString().replace("undefined_84", "Jeans") || item.name,
+			image: item.image
+				? item.image
+						.toString()
+						.replace(
+							"http://placeimg.com/640/480/abstract",
+							"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2sVHIry8mKGvctfSSDURN4Lm6h2nWzhrf3g&s"
+						)
+				: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2sVHIry8mKGvctfSSDURN4Lm6h2nWzhrf3g&s",
+		}));
+
+		dispatch(changeProductCategories(updatedCategories));
 	}, [dispatch]);
 
 	const handleCategoriesMouseEnter = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
