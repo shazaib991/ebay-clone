@@ -1,5 +1,6 @@
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
+import Image from "../../assets/images/pexels-bidvine-517980-1249611_preview_rev_1.png";
 
 export const CategoryPopover1 = () => {
 	interface Category {
@@ -101,9 +102,9 @@ export const CategoryPopover1 = () => {
 							key={index}
 							className={`${
 								data.name == "Clothes" ? "flex" : "hidden"
-							} relative rounded-[20px] w-[60%] bg-blue-800 my-[15px] mr-[15px]`}
+							} relative rounded-[20px] w-[60%] bg-blue-800 my-[15px] mr-[15px] z-[1]`}
 						>
-							<div className="absolute top-0 left-0 text-white mt-[35px] ml-[30px]">
+							<div className="absolute top-0 left-0 text-white mt-[35px] ml-[30px] z-[3]">
 								<p className="text-[30px] text-[#e3e3e1] font-bold">{data.name}</p>
 								<p className="mt-[10px] text-[#e3e3e1] font-medium">Check the offers</p>
 								<button className="mt-[70px] w-[120px] bg-[#e3e3e1] text-[#1a1a18] rounded-full font-semibold text-[15px] py-[7px] px-[10px] cursor-pointer">
@@ -112,7 +113,7 @@ export const CategoryPopover1 = () => {
 							</div>
 							<img
 								src={data.image}
-								className="w-[280px] h-full absolute top-0 right-[-1px] rounded-r-[20px]"
+								className="w-full object-contain z-[2] h-full absolute top-0 right-[-1px] rounded-r-[20px]"
 								alt="cloth image"
 							/>
 						</div>
