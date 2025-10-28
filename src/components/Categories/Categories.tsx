@@ -32,8 +32,8 @@ export const Categories = () => {
 	const productCategories = useSelector((state: RootState) => state.states.value.productCategories);
 
 	const getProductCategories = useCallback(async () => {
-		const productCategoriesResponse = await axios("https://api.escuelajs.co/api/v1/categories");
-		const productCategoriesResponseData = productCategoriesResponse.data.slice(0, 6);
+		// const productCategoriesResponse = await axios("https://api.escuelajs.co/api/v1/categories");
+		const productCategoriesResponseData = [];
 
 		productCategoriesResponseData.push(
 			{id: 51, name: "Deals", image: "http://placeimg.com/640/480/abstract"},
@@ -45,7 +45,13 @@ export const Categories = () => {
 		);
 		productCategoriesResponseData.unshift(
 			{id: 1, name: "eBay Live", image: "http://placeimg.com/640/480/abstract"},
-			{id: 2, name: "Saved", image: "http://placeimg.com/640/480/abstract"}
+			{id: 2, name: "Saved", image: "http://placeimg.com/640/480/abstract"},
+			{id: 3, name: "Clothes", image: "https://images.pexels.com/photos/325876/pexels-photo-325876.jpeg"},
+			{id: 4, name: "Electronics", image: "https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg"},
+			{id: 5, name: "Furniture", image: "https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg"},
+			{id: 6, name: "Shoes", image: "https://images.pexels.com/photos/19090/pexels-photo.jpg"},
+			{id: 7, name: "Miscellaneous", image: "https://images.pexels.com/photos/631212/pexels-photo-631212.jpeg"},
+			{id: 8, name: "Jeans", image: "https://images.pexels.com/photos/1082529/pexels-photo-1082529.jpeg"},
 		);
 
 		const updatedCategories = productCategoriesResponseData.map((item: Category & {id: number}) => ({

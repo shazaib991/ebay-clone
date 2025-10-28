@@ -101,7 +101,7 @@ export const CategoryPopover1 = () => {
 							key={index}
 							className={`${
 								data.name == "Clothes" ? "flex" : "hidden"
-							} relative rounded-[20px] w-[60%] bg-[#1a1a17] my-[15px] mr-[15px]`}
+							} relative rounded-[20px] w-[60%] bg-blue-800 my-[15px] mr-[15px]`}
 						>
 							<div className="absolute top-0 left-0 text-white mt-[35px] ml-[30px]">
 								<p className="text-[30px] text-[#e3e3e1] font-bold">{data.name}</p>
