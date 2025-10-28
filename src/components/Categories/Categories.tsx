@@ -69,35 +69,35 @@ export const Categories = () => {
 		dispatch(changeProductCategories(updatedCategories));
 	}, [dispatch]);
 
-	const handleCategoriesMouseEnter = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
+	const handleCategoriesMouseEnter = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, index: number) => {
 		if (index == 0 || index == 1 || index == 8) {
 			return;
 		}
 
-		if (!e.currentTarget.previousElementSibling) return;
-		if (!e.currentTarget.nextElementSibling) return;
+		if (!e.currentTarget.firstElementChild) return;
+		if (!e.currentTarget.lastElementChild) return;
 
 		dispatch(changeCategoryMouseOver(true));
 		dispatch(changeCategoryName(e.currentTarget));
 
-		e.currentTarget.previousElementSibling.classList.replace("bg-white", "bg-black");
-		e.currentTarget.nextElementSibling.classList.replace("bg-white", "bg-black");
+		e.currentTarget.firstElementChild.classList.replace("bg-white", "bg-black");
+		e.currentTarget.lastElementChild.classList.replace("bg-white", "bg-black");
 
-		dispatch(changeCategoryPreviousHtmlElement(e.currentTarget.previousElementSibling));
-		dispatch(changeCategoryNextHtmlElement(e.currentTarget.nextElementSibling));
+		dispatch(changeCategoryPreviousHtmlElement(e.currentTarget.firstElementChild));
+		dispatch(changeCategoryNextHtmlElement(e.currentTarget.lastElementChild));
 	};
 
-	const handleCategoriesMouseLeave = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
+	const handleCategoriesMouseLeave = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, index: number) => {
 		if (index == 0 || index == 1 || index == 8) {
 			return;
 		}
 
-		if (!e.currentTarget.previousElementSibling) return;
-		if (!e.currentTarget.nextElementSibling) return;
+		if (!e.currentTarget.firstElementChild) return;
+		if (!e.currentTarget.lastElementChild) return;
 
 		dispatch(changeCategoryMouseOver(false));
-		e.currentTarget.previousElementSibling.classList.replace("bg-black", "bg-white");
-		e.currentTarget.nextElementSibling.classList.replace("bg-black", "bg-white");
+		e.currentTarget.firstElementChild.classList.replace("bg-black", "bg-white");
+		e.currentTarget.lastElementChild.classList.replace("bg-black", "bg-white");
 	};
 
 	useEffect(() => {
@@ -110,18 +110,17 @@ export const Categories = () => {
 			<div className="w-full flex justify-center font-[arimo] mt-[5px] relative font-medium">
 				{productCategories.map((data: Category, index: number) => {
 					return (
-						<div key={index} className="flex">
-							<div className={`bg-white w-[1px] h-full`}></div>
+						<div key={index} className="flex relative" onMouseEnter={(e) => handleCategoriesMouseEnter(e, index)} 
+						onMouseLeave={(e) => handleCategoriesMouseLeave(e, index)}>
+							<div className={`bg-white w-[1px] h-full absolute left-0 top-0`}></div>
 							<button
-								onMouseEnter={(e) => handleCategoriesMouseEnter(e, index)}
-								onMouseLeave={(e) => handleCategoriesMouseLeave(e, index)}
 								className="pb-[5px]"
 							>
 								<Link to={"/"} className="mx-[20px] text-[13px] hover:underline hover:text-blue-700">
 									{data.name}
 								</Link>
 							</button>
-							<div className="bg-white w-[1px] h-full"></div>
+							<div className="bg-white w-[1px] h-full absolute right-0 top-0"></div>
 						</div>
 					);
 				})}
