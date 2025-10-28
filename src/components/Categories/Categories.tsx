@@ -1,4 +1,3 @@
-import axios from "axios";
 import {useCallback, useEffect} from "react";
 import {Link} from "react-router";
 import {CategoriesPopOver} from "../PopOvers/CategoriesPopOver";
