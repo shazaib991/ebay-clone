@@ -4,23 +4,27 @@ export const SlideShow = () => {
 	return (
 		<div>
 			{Data.map((item) => {
-				<div className={`bg-${item.backgroundColor}`}>
-					<div>
-						<p>{item.title}</p>
-						<p>{item.description}</p>
-						<button>{item.buttonText}</button>
-					</div>
-					<div>
+				return (
+					<div className={`bg-${item.backgroundColor} flex items-center justify-between h-[400px] font-[arimo]`}>
 						<div>
-							{item.products.map((item2) => {
-								<div>
-									<img src={item2.image} alt="" />
-									<p>{item2.title}</p>
-								</div>;
-							})}
+							<p className="text-[35px] font-bold">{item.title}</p>
+							<p>{item.description}</p>
+							<button>{item.buttonText}</button>
+						</div>
+						<div>
+							<div className="flex">
+								{item.products.map((item2) => {
+									return (
+										<div>
+											<img src={item2.image} className="h-[200px]" alt="" />
+											<p>{item2.title}</p>
+										</div>
+									);
+								})}
+							</div>
 						</div>
 					</div>
-				</div>;
+				);
 			})}
 		</div>
 	);

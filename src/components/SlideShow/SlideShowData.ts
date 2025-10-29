@@ -7,5 +7,5 @@ export const Data = [{
     title: "All your faves are here",
     description: "Refresh your space, elevate your style and power your work.",
     buttonText: "Do your thing",
-    products: [{ image: Image, title: "Home and Garden" }, { image: Image1, title: "Fashion" }, { image: Image2, title: "Business and Industrial" }]
+    products: [{ image: Image, title: "Home and Garden" }, { image: Image2, title: "Fashion" }, { image: Image1, title: "Business and Industrial" }]
 }]

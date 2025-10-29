@@ -1,6 +1,5 @@
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import Image from "../../assets/images/pexels-bidvine-517980-1249611_preview_rev_1.png";
 
 export const CategoryPopover1 = () => {
 	interface Category {
