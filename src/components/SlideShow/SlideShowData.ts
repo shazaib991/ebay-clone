@@ -13,6 +13,14 @@ export const Data = [{
     description: "Refresh your space, elevate your style and power your work.",
     buttonText: "Do your thing",
     products: [{ image: Image, title: "Home and Garden" }, { image: Image2, title: "Fashion" }, { image: Image1, title: "Business and Industrial" }]
+}, {backgroundColor: "bg-[#e7e7e7]",
+    backgroundImage: Image3,
+    textColor: "text-black",
+    buttonTextColor: "text-[#f7f7f7]",
+    buttonBackgroundColor: "bg-black",
+    title: "Buy more and save up to $120",
+    description: "Save on more of what you love, with easy international shipping.",
+    buttonText: "Get your coupon"
 }, {
     backgroundColor: "blue-500",
     title: "All your faves are here",
@@ -25,22 +33,22 @@ export const Data = [{
     products: [{ image: Image, title: "Home and Garden" }, { image: Image2, title: "Fashion" }, { image: Image1, title: "Business and Industrial" }]
 }]
 
-export const Data2 = [{
-    backgroundColor: "bg-[#e7e7e7]",
-    backgroundImage: Image3,
-    textColor: "text-black",
-    buttonTextColor: "text-[#f7f7f7]",
-    buttonBackgroundColor: "bg-black",
-    title: "Buy more and save up to $120",
-    description: "Save on more of what you love, with easy international shipping.",
-    buttonText: "Get your coupon"
-}, {
-    backgroundColor: "bg-[#e7e7e7]",
-    backgroundImage: Image3,
-    textColor: "text-black",
-    buttonTextColor: "text-[#f7f7f7]",
-    buttonBackgroundColor: "bg-black",
-    title: "Buy more and save up to $120",
-    description: "Save on more of what you love, with easy international shipping.",
-    buttonText: "Get your coupon"
-}]
+// export const Data2 = [{
+//     backgroundColor: "bg-[#e7e7e7]",
+//     backgroundImage: Image3,
+//     textColor: "text-black",
+//     buttonTextColor: "text-[#f7f7f7]",
+//     buttonBackgroundColor: "bg-black",
+//     title: "Buy more and save up to $120",
+//     description: "Save on more of what you love, with easy international shipping.",
+//     buttonText: "Get your coupon"
+// }, {
+//     backgroundColor: "bg-[#e7e7e7]",
+//     backgroundImage: Image3,
+//     textColor: "text-black",
+//     buttonTextColor: "text-[#f7f7f7]",
+//     buttonBackgroundColor: "bg-black",
+//     title: "Buy more and save up to $120",
+//     description: "Save on more of what you love, with easy international shipping.",
+//     buttonText: "Get your coupon"
+// }]

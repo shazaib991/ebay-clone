@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {Data, Data2} from "./SlideShowData";
+import {Data} from "./SlideShowData";
 import {changeSlideShowState} from "../states/States2";
 import * as Icon from "react-bootstrap-icons";
 import {useEffect} from "react";
@@ -15,6 +15,7 @@ export const SlideShow = () => {
 
 	const dispatch = useDispatch();
 	const slideShowStateActive = useSelector((state: RootState) => state.states2.value.slideShowStateActive);
+	const curentIndex = useSelector((state: RootState) => state.states2.value.slideShowStateActive);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -28,9 +29,6 @@ export const SlideShow = () => {
 		<div className="mt-[30px] relative h-[380px]">
 			<div className="flex absolute bottom-[15px] left-[50%] z-[5]">
 				{Data.map(() => {
-					return <div className="h-[7px] w-[7px] border rounded-full mr-[5px]"></div>;
-				})}
-				{Data2.map(() => {
 					return <div className="h-[7px] w-[7px] border rounded-full mr-[5px]"></div>;
 				})}
 			</div>
@@ -65,49 +63,38 @@ export const SlideShow = () => {
 							</div>
 							<div>
 								<div className="flex mb-[35px]">
-									{item.products.map((item2) => {
-										return (
-											<>
-												<div className="flex flex-col items-center">
-													<img src={item2.image} className="h-[200px]" alt="" />
-													<div className="flex items-center">
-														<p className={`text-[18px] font-bold ${item.textColor}`}>{item2.title}</p>
-														<Icon.ChevronRight
-															size={13}
-															className="ml-[10px]"
-															color={`${item.chevronColor}`}
-														></Icon.ChevronRight>
-													</div>
-												</div>
-											</>
-										);
-									})}
+									{item.products
+										? item.products.map((item2) => {
+												return (
+													<>
+														<div className="flex flex-col items-center">
+															<img src={item2.image} className="h-[200px]" alt="" />
+															<div className="flex items-center">
+																<p className={`text-[18px] font-bold ${item.textColor}`}>
+																	{item2.title}
+																</p>
+																<Icon.ChevronRight
+																	size={13}
+																	className="ml-[10px]"
+																	color={`${item.chevronColor}`}
+																></Icon.ChevronRight>
+															</div>
+														</div>
+													</>
+												);
+										  })
+										: ""}
 								</div>
 							</div>
-						</div>
-					);
-				})}
-				{Data2.map((item) => {
-					return (
-						<div
-							className={`${item.backgroundColor} min-w-[100vw] ${
-								slideShowStateActive ? "translate-x-[-100vw]" : "translate-x-0"
-							} flex items-center justify-between h-full font-[arimo] transition`}
-						>
-							<div className="ml-[80px] mb-[70px]">
-								<p className={`text-[45px] font-bold leading-12 mb-[10px] ${item.textColor}`}>{item.title}</p>
-								<p className={`text-[15px] mb-[30px] ${item.textColor} font-medium`}>{item.description}</p>
-								<button
-									className={`${item.buttonBackgroundColor} rounded-full py-[8px] font-bold ${item.buttonTextColor} px-[20px] cursor-pointer`}
-								>
-									{item.buttonText}
-								</button>
-							</div>
-							<div className="h-full">
+							{item.backgroundImage ? (
 								<div className="h-full">
-									<img src={item.backgroundImage} className="h-full" alt="" />
+									<div className="h-full">
+										<img src={item.backgroundImage} className="h-full" alt="" />
+									</div>
 								</div>
-							</div>
+							) : (
+								""
+							)}
 						</div>
 					);
 				})}
