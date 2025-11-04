@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {Data} from "./SlideShowData";
-import {changeSlideShowState} from "../states/States2";
+import {changeCurrentIndex, changeSlideTransitionEnabled} from "../states/States2";
 import * as Icon from "react-bootstrap-icons";
 import {useEffect} from "react";
 
@@ -9,27 +9,49 @@ export const SlideShow = () => {
 		states2: {
 			value: {
 				slideShowStateActive: boolean;
+				currentIndex: number;
+				slideTransitionEnabled: boolean;
 			};
 		};
 	}
 
 	const dispatch = useDispatch();
 	const slideShowStateActive = useSelector((state: RootState) => state.states2.value.slideShowStateActive);
-	const curentIndex = useSelector((state: RootState) => state.states2.value.slideShowStateActive);
+	const currentIndex = useSelector((state: RootState) => state.states2.value.currentIndex);
+	const slideTransitionEnabled = useSelector((state: RootState) => state.states2.value.slideTransitionEnabled);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			dispatch(changeSlideShowState(!slideShowStateActive));
+			if (currentIndex >= Data.length) {
+				dispatch(changeSlideTransitionEnabled(false));
+				dispatch(changeCurrentIndex(0));
+
+				setTimeout(() => {
+					dispatch(changeSlideTransitionEnabled(true));
+				}, 50);
+			} else {
+				dispatch(changeSlideTransitionEnabled(true));
+				dispatch(changeCurrentIndex(currentIndex + 1));
+			}
 		}, 5000);
 
 		return () => clearInterval(interval);
-	}, [dispatch, slideShowStateActive]);
+	}, [currentIndex, dispatch, slideShowStateActive]);
+
+	const slides = [...Data, {...Data[0]}];
 
 	return (
 		<div className="mt-[30px] relative h-[380px]">
 			<div className="flex absolute bottom-[15px] left-[50%] z-[5]">
-				{Data.map(() => {
-					return <div className="h-[7px] w-[7px] border rounded-full mr-[5px]"></div>;
+				{Data.map((_, index) => {
+					return (
+						<div
+							key={index}
+							className={`h-[7px] w-[7px] border ${
+								currentIndex === index || (currentIndex === Data.length && index === 0) ? "bg-black" : ""
+							} rounded-full mr-[5px]`}
+						></div>
+					);
 				})}
 			</div>
 			<div className="flex absolute bottom-[15px] right-[20px] z-[5]">
@@ -44,13 +66,18 @@ export const SlideShow = () => {
 					<Icon.Play className="hidden"></Icon.Play>
 				</div>
 			</div>
-			<div className="flex overflow-auto h-full">
-				{Data.map((item) => {
+			<div className="flex overflow-hidden h-full relative">
+				{slides.map((item, index) => {
 					return (
 						<div
-							className={`bg-${item.backgroundColor} flex min-w-[100vw] ${
-								slideShowStateActive ? "translate-x-[-100vw]" : "translate-x-0"
-							} items-center justify-between h-full font-[arimo] transition`}
+							key={index}
+							className={`bg-${
+								item.backgroundColor
+							} flex w-[100vw] absolute top-0 left-0 h-full items-center justify-between 
+								${slideTransitionEnabled ? "transition-all duration-500 ease-in-out" : ""} font-[arimo]`}
+							style={{
+								transform: `translateX(${(index - currentIndex) * 100}vw)`,
+							}}
 						>
 							<div className="ml-[80px] mb-[70px]">
 								<p className={`text-[45px] font-bold leading-12 mb-[10px] ${item.textColor}`}>{item.title}</p>
@@ -64,10 +91,10 @@ export const SlideShow = () => {
 							<div>
 								<div className="flex mb-[35px]">
 									{item.products
-										? item.products.map((item2) => {
+										? item.products.map((item2, index) => {
 												return (
 													<>
-														<div className="flex flex-col items-center">
+														<div key={index} className="flex flex-col items-center">
 															<img src={item2.image} className="h-[200px]" alt="" />
 															<div className="flex items-center">
 																<p className={`text-[18px] font-bold ${item.textColor}`}>
