@@ -5,7 +5,7 @@ export const ProductCard = () => {
 		<div className="ml-[20px] font-[arimo]">
 			{Data.map((item, index) => {
 				return (
-					<div key={index}>
+					<div key={index} className="mb-[50px]">
 						<h1 className="text-[24px] font-bold">{item.title}</h1>
 						<div className="flex">
 							{item.products.map((product, id) => {
