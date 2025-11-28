@@ -2,10 +2,10 @@ import {Data} from "./ProductCardData";
 
 export const ProductCard = () => {
 	return (
-		<div className="ml-[20px] font-[arimo]">
+		<div className="ml-[45px] font-[arimo]">
 			{Data.map((item, index) => {
 				return (
-					<div key={index} className="mb-[50px]">
+					<div key={index} className="mb-[50px] overflow-x-scroll">
 						<h1 className="text-[24px] font-bold">{item.title}</h1>
 						<div className="flex">
 							{item.products.map((product, id) => {

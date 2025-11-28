@@ -3,6 +3,7 @@ import {Header} from "../components/Header/Header.tsx";
 import {HeaderMain} from "../components/HeaderMain/HeaderMain.tsx";
 import {InfoCard} from "../components/InfoCard/InfoCard.tsx";
 import {ProductCard} from "../components/ProductCard/ProductCard.tsx";
+import {ProductDealsCard} from "../components/ProductDealsCard/ProductDealsCard.tsx";
 import {SlideShow} from "../components/SlideShow/SlideShow.tsx";
 
 export const Home = () => {
@@ -14,6 +15,7 @@ export const Home = () => {
 			<SlideShow></SlideShow>
 			<InfoCard></InfoCard>
 			<ProductCard></ProductCard>
+			<ProductDealsCard></ProductDealsCard>
 		</>
 	);
 };
