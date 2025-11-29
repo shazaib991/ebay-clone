@@ -13,7 +13,11 @@ export const ProductDealsCard = () => {
 			{Data.map((item, index) => {
 				return (
 					<div key={index} className="w-[230px] ml-[15px] flex-shrink-0">
-						<img src={item.image} alt={item.title} className="h-[230px] w-full bg-gray-100 rounded-[15px]" />
+						<img
+							src={item.image}
+							alt={item.title}
+							className="h-[230px] w-full bg-gray-100 rounded-[15px] object-contain"
+						/>
 						<p className="text-[15px] mt-[15px]">{item.title}</p>
 						<div className="mt-[8px] flex items-end">
 							<p className="font-bold">&#36;{item.price}</p>
