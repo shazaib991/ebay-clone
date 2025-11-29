@@ -1,4 +1,10 @@
 import Image from "../../assets/images/productDealsCardImages/pexels-content-pixie-1405717-9177834_preview_rev_1.png"
 import Image2 from "../../assets/images/productDealsCardImages/pexels-rajat-yadav-441811506-15458049_preview_rev_1.png"
+import Image3 from "../../assets/images/productDealsCardImages/pexels-anj-namoro-1479642-2850487_preview_rev_1.png"
+import Image4 from "../../assets/images/productDealsCardImages/pexels-dzeninalukac-815494_preview_rev_1.png"
+import Image5 from "../../assets/images/productDealsCardImages/pexels-mart-production-7641016_preview_rev_1.png"
+import Image6 from "../../assets/images/productDealsCardImages/pexels-castorlystock-3785784_preview_rev_1.png"
+import Image7 from "../../assets/images/productDealsCardImages/pexels-ramandeep-singh-bali-769422-1630992_preview_rev_1.png"
+import Image8 from "../../assets/images/productDealsCardImages/pexels-hilal-diken-2153971208-34941510_preview_rev_1.png"
 
-export const Data = [{title: "Dyson HS05 Airwrap Styler (Long) | Nickel/Copper l Refurbished", image: Image, price: "312.99", originalPrice: "599.99"}, {title: "Apple iPhone 13 128GB Unlocked - Excellent", image: Image2, price: "275.95"}]
+export const Data = [{title: "Dyson HS05 Airwrap Styler (Long) | Nickel/Copper l Refurbished", image: Image, price: "312.99", originalPrice: "599.99"}, {title: "Apple iPhone 13 128GB Unlocked - Excellent", image: Image2, price: "275.95"}, {title: "Wolverine Men Upland Vest Denim Outerwear Vests Cotton", image: Image3, price: "23.30"}, {title: "Sony WH-1000XM6 The Best Wireless Noise Canceling Bluetooth Headphones", image: Image4, price: "299.99", originalPrice: "499.99"}, {title: "Roborock Q Revo Robot Vacuum, Self-Drying, Mop Lifting - Certified Refurbished", image: Image5, price: "349.99", originalPrice: "849.99"}, {title: "Light Blue by Dolce & Gabbana D&G 6.7 oz EDT Cologne for Men New In Box", image: Image6, price: "64.28", originalPrice: "115.00"}, {title: "Crocs Adult Baya Lined Clogs", image: Image7, price: "39.99", originalPrice: "59.99"}, {title: "Woody 18\" animator", image: Image8, price: "18.79", originalPrice: "29.99"}]
