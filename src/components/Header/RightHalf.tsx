@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 export const RightHalf = () => {
 	return (
 		<>
-			<div className="flex text-[12px] items-center font-[Arimo] font-medium mr-[40px]">
+			<div className="flex text-[12px] items-center font-[Arimo] font-medium mr-[40px] max-lg:mr-0">
 				<Link to={"/"}>Ship to</Link>
 				<Link to={"/"} className="ml-[30px]">
 					Sell

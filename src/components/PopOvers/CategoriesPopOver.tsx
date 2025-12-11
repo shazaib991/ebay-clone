@@ -36,7 +36,7 @@ export const CategoriesPopOver = () => {
 		<div
 			className={`${
 				categoryMouseOver ? "flex" : "hidden"
-			} absolute top-[27px] h-[300px] rounded-[20px] w-[98%] bg-white shadow-[0_0_12px_0_rgba(0,0,0,0.25)]`}
+			} absolute top-[27px] h-[300px] rounded-[20px] z-[999] w-[98%] bg-white shadow-[0_0_12px_0_rgba(0,0,0,0.25)]`}
 			onMouseLeave={() => handleMouseLeave()}
 			onMouseEnter={() => handleMouseEnter()}
 		>
