@@ -76,7 +76,7 @@ export const Categories = () => {
 	}, [getProductCategories]);
 
 	return (
-		<div>
+		<div className="relative z-20">
 			<hr className="mt-[20px]" />
 			<div className="w-full flex justify-center font-[arimo] mt-[5px] relative font-medium overflow-auto">
 				{productCategories.map((data: Category, index: number) => {
@@ -95,6 +95,8 @@ export const Categories = () => {
 						</div>
 					);
 				})}
+			</div>
+			<div className="flex justify-center w-full">
 				<CategoriesPopOver></CategoriesPopOver>
 			</div>
 		</div>
