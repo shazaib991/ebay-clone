@@ -87,7 +87,7 @@ export const Categories = () => {
 							<button
 								className="pb-[5px]"
 							>
-								<Link to={"/"} className="mx-[20px] text-[13px] hover:underline hover:text-blue-700">
+								<Link to={"/"} className="mx-[20px] text-[13px] hover:underline hover:text-blue-700 whitespace-nowrap">
 									{data.name}
 								</Link>
 							</button>
