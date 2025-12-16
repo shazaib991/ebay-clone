@@ -4,7 +4,7 @@ import {RightHalf} from "./RightHalf";
 
 export const HeaderMain = () => {
 	return (
-		<div className="mt-[15px] flex items-center justify-between">
+		<div className="mt-2 md:mt-[15px] flex items-center justify-between flex-wrap">
 			<LeftHalf></LeftHalf>
 			<HeaderMainMiddle></HeaderMainMiddle>
 			<RightHalf></RightHalf>
