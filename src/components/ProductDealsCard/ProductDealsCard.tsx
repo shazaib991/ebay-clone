@@ -2,7 +2,7 @@ import {Data} from "./productDealsCardData";
 
 export const ProductDealsCard = () => {
 	return (
-		<div className="flex font-[arimo] ml-[45px] mr-[30px] overflow-x-hidden hover:overflow-x-auto flex-nowrap">
+		<div className="flex font-[arimo] ml-[45px] mr-[30px] overflow-x-auto flex-nowrap">
 			<div className="h-[230px] w-[230px] bg-black text-white p-[20px] rounded-[15px] flex-shrink-0">
 				<h1 className="font-bold text-[25px]">Today's Deals</h1>
 				<p>All with Free Shipping</p>
